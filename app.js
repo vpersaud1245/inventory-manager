@@ -20,6 +20,7 @@ app.listen(PORT, () => console.log(`Express app listening on port ${PORT}`));
  */
 /**
  * TODO
+ * Add edge cases (If no products exist or no categories exist. If there are no products in that category)
  * Products (CRUD)
  * Category (CRUD)
  * Products List

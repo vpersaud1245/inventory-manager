@@ -7,4 +7,10 @@ module.exports = {
     res.send(categories);
     res.end;
   },
+  getProductsByCategory: async function (req, res) {
+    const categoryId = req.params["categoryId"];
+    const products = await db.getProductsByCategory(categoryId);
+    res.send(products);
+    res.end();
+  },
 };
