@@ -16,4 +16,10 @@ module.exports = {
     );
     return rows;
   },
+  getProductById: async function (productId) {
+    const { rows } = await pool.query("SELECT * FROM products WHERE id = $1", [
+      productId,
+    ]);
+    return rows;
+  },
 };
