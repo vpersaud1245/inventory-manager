@@ -13,4 +13,14 @@ module.exports = {
     res.send(product);
     res.end();
   },
+  getCreateProductForm: (req, res) => {
+    res.render("createProduct");
+  },
+  addProduct: async (req, res) => {
+    try {
+      await db.addProduct(req.body);
+      console.log(`${req.body.name} Successfully added`);
+      res.end();
+    } catch (error) {}
+  },
 };

@@ -1,6 +1,9 @@
 const pool = require("./pool");
 
 module.exports = {
+  /*
+    READ QUERIES
+  */
   getAllProducts: async function () {
     const { rows } = await pool.query("SELECT * FROM products");
     return rows;
@@ -22,4 +25,25 @@ module.exports = {
     ]);
     return rows;
   },
+  /*
+    WRITE QUERIES
+  */
+  addProduct: async function (productDetails) {
+    const result = await pool.query(
+      "INSERT INTO products (name, description, price, qty, img_url, category_id) VALUES ($1, $2, $3, $4, $5, $6)",
+      [
+        productDetails.name,
+        productDetails.description,
+        productDetails.price,
+        productDetails.qty,
+        productDetails.img_url,
+        productDetails.categoryId,
+      ]
+    );
+    console.log(result);
+  },
 };
+
+/**
+ * | name | price | qty | img_url | category_id
+ */
