@@ -11,10 +11,9 @@
   <input type="text" name="img_url" required />
   <label for="category">Category</label>
   <select name="categoryId" id="productCategory">
-    <option value="1">Dog Toys</option>
-    <option value="2">Dog Treats</option>
-    <option value="3">Wet Dog Food</option>
-    <option value="4">Dry Dog Food</option>
+    <% categories.map((category,index) => { %>
+    <option value="<%=index+1%>"><%=category.name%></option>
+    <%}) %>
   </select>
   <button type="submit">Submit</button>
 </form>

@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+const { getAllCategories } = require("./categoriesController");
 module.exports = {
   getAllProducts: async (req, res) => {
     console.log("...Retreiving products page");
@@ -13,8 +14,9 @@ module.exports = {
     res.send(product);
     res.end();
   },
-  getCreateProductForm: (req, res) => {
-    res.render("createProduct");
+  getCreateProductForm: async (req, res) => {
+    const categories = await db.getAllCategories();
+    res.render("createProduct", { categories });
   },
   addProduct: async (req, res) => {
     try {
