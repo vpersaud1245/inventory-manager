@@ -18,11 +18,22 @@ module.exports = {
     const categories = await db.getAllCategories();
     res.render("createProduct", { categories });
   },
+  getDeleteProductForm: async (req, res) => {
+    const products = await db.getAllProducts();
+    res.render("deleteProduct", { products });
+  },
   addProduct: async (req, res) => {
     try {
       await db.addProduct(req.body);
       console.log(`${req.body.name} Successfully added`);
       res.end();
+    } catch (error) {}
+  },
+  deleteProduct: async (req, res) => {
+    try {
+      await db.deleteProduct(req.body.productId);
+      const products = await db.getAllProducts();
+      res.render("deleteProduct", { products });
     } catch (error) {}
   },
 };

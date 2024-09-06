@@ -1,0 +1,58 @@
+<ul class="productsContainer">
+  <% products.map((product) => { %>
+  <li class="product">
+    <div class="productName"><%= product.name %></div>
+    <div class="productPrice">$<%= product.price %></div>
+    <button
+      class="deleteBtn"
+      data-id="<%= product.id %>"
+      data-name="<%= product.name %>"
+    >
+      Delete
+    </button>
+  </li>
+  <% }) %>
+</ul>
+
+<!-- Modal Structure -->
+<div id="deleteModal" class="modal" style="display: none">
+  <div class="modal-content">
+    <h4>Confirm Deletion</h4>
+    <p class="modalProductName"></p>
+    <!-- Delete form submit -->
+    <form action="/products/delete" method="POST">
+      <input type="hidden" name="productId" id="productIdInput" />
+      <button type="submit" ="confirmDelete" class="confirmDeleteBtn">
+        Yes, Delete
+      </button>
+    </form>
+    <button id="cancelDelete" class="cancelDeleteBtn">Cancel</button>
+  </div>
+</div>
+
+<script>
+  // Get modal and buttons
+  const modal = document.getElementById("deleteModal");
+  const deleteButtons = document.querySelectorAll(".deleteBtn");
+  const confirmDelete = document.getElementById("confirmDelete");
+  const cancelDelete = document.getElementById("cancelDelete");
+  const productIdInput = document.getElementById("productIdInput");
+  const modalProductName = document.querySelector(".modalProductName");
+
+  // Show the modal when the delete button is clicked
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      productIdInput.value = this.getAttribute("data-id");
+      modalProductName.textContent = `Are you sure you want to delete ${this.getAttribute(
+        "data-name"
+      )}?`;
+      modal.style.display = "block";
+    });
+  });
+
+  // Remove modal when cancel is clicked
+  cancelDelete.addEventListener("click", function () {
+    productIdInput.value = null;
+    modal.style.display = "none";
+  });
+</script>

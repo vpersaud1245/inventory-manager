@@ -42,6 +42,12 @@ module.exports = {
     );
     console.log(result);
   },
+  deleteProduct: async function (productId) {
+    const result = await pool.query("DELETE FROM products WHERE id = $1", [
+      productId,
+    ]);
+    console.log(result);
+  },
 };
 
 /**
