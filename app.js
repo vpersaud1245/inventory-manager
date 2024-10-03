@@ -15,15 +15,18 @@ app.listen(PORT, () => console.log(`Express app listening on port ${PORT}`));
 
 /**
  * JUST COMPLETED
+ * EDIT COMPLETED ITEMS CAN BE EDITED 10/3/2024
  * DB IS POPULATED, SCRIPT WAS MADE TO POPULATE IT
  * DB IS NAMED top_inventory
  */
 /**
  * TODO
+ * WORK ON EDITING CATEGORIES NEXT
+ * Edit product
+ * Add category
+ * Edit category details
+ * Remove category
  * Add edge cases (If no products exist or no categories exist. If there are no products in that category)
- * Products (CRUD)
- * Category (CRUD)
- * Products List
- * Product Page
- * Category List
+ * Add views
+ * Backend form validation
  */

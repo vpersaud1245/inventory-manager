@@ -48,6 +48,21 @@ module.exports = {
     ]);
     console.log(result);
   },
+  editProduct: async function (productDetails) {
+    const result = await pool.query(
+      "UPDATE products SET name = $1, description = $2, price = $3, qty = $4, img_url = $5, category_id = $6 WHERE id = $7",
+      [
+        productDetails.name,
+        productDetails.description,
+        productDetails.price,
+        productDetails.qty,
+        productDetails.img_url,
+        productDetails.categoryId,
+        productDetails.id,
+      ]
+    );
+    console.log(result);
+  },
 };
 
 /**

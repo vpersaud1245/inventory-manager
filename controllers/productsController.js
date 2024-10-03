@@ -22,6 +22,12 @@ module.exports = {
     const products = await db.getAllProducts();
     res.render("deleteProduct", { products });
   },
+  getEditProductForm: async (req, res) => {
+    const product = await db.getProductById(req.params["productId"]);
+    const categories = await db.getAllCategories();
+    console.log(product);
+    res.render("editProduct", { product, categories });
+  },
   addProduct: async (req, res) => {
     try {
       await db.addProduct(req.body);
@@ -34,6 +40,16 @@ module.exports = {
       await db.deleteProduct(req.body.productId);
       const products = await db.getAllProducts();
       res.render("deleteProduct", { products });
+    } catch (error) {}
+  },
+  editProduct: async (req, res) => {
+    try {
+      const productId = req.params.productId;
+      req.body.id = productId;
+      console.log(req.body);
+      await db.editProduct(req.body);
+      console.log(`${req.body.name} Successfully changed`);
+      res.end();
     } catch (error) {}
   },
 };
