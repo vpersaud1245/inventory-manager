@@ -14,4 +14,19 @@ module.exports = {
     res.send(products);
     res.end();
   },
+  getEditCategoryForm: async function (req, res) {
+    const category = await db.getCategoryById(req.params["categoryId"]);
+    res.render("editCategory", { category });
+  },
+  // WRITE METHODS
+  editCategory: async function (req, res) {
+    try {
+      const categoryId = req.params.categoryId;
+      req.body.id = categoryId;
+      console.log(req.body);
+      await db.editCategory(req.body);
+      console.log(`${req.body.name} Successfully changed`);
+      res.end();
+    } catch (error) {}
+  },
 };

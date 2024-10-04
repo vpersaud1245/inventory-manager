@@ -1,0 +1,7 @@
+<form action="/categories/edit/<%= category[0].id %>" method="post">
+  <label for="name">Category Name</label>
+  <input type="text" name="name" value="<%= category[0].name %>" />
+  <label for="description">Category Description</label>
+  <textarea name="description"><%= category[0].description %></textarea>
+  <button type="submit">Submit Changes</button>
+</form>

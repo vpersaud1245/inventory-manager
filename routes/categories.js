@@ -7,4 +7,10 @@ categoriesRouter.get(
   "/:categoryId",
   categoriesController.getProductsByCategory
 );
+categoriesRouter.get(
+  "/edit/:categoryId",
+  categoriesController.getEditCategoryForm
+);
+categoriesRouter.post("/edit/:categoryId", categoriesController.editCategory);
+
 module.exports = categoriesRouter;

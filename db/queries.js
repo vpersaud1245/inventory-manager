@@ -25,6 +25,13 @@ module.exports = {
     ]);
     return rows;
   },
+  getCategoryById: async function (categoryId) {
+    const { rows } = await pool.query(
+      "SELECT * FROM categories WHERE id = $1",
+      [categoryId]
+    );
+    return rows;
+  },
   /*
     WRITE QUERIES
   */
@@ -60,6 +67,13 @@ module.exports = {
         productDetails.categoryId,
         productDetails.id,
       ]
+    );
+    console.log(result);
+  },
+  editCategory: async function (categoryDetails) {
+    const result = await pool.query(
+      "UPDATE categories SET name = $1, description = $2 WHERE id = $3",
+      [categoryDetails.name, categoryDetails.description, categoryDetails.id]
     );
     console.log(result);
   },
