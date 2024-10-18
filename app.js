@@ -21,7 +21,7 @@ app.listen(PORT, () => console.log(`Express app listening on port ${PORT}`));
  */
 /**
  * TODO
- * WORK ON EDITING CATEGORIES NEXT
+ * WORK ON CREATING CATEGORIES NEXT
  * Edit product
  * Add category
  * Edit category details

@@ -77,6 +77,13 @@ module.exports = {
     );
     console.log(result);
   },
+  createCategory: async function (categoryDetails) {
+    const result = await pool.query(
+      "INSERT INTO categories (name, description) VALUES ($1, $2)",
+      [categoryDetails.name, categoryDetails.description]
+    );
+    console.log(result);
+  },
 };
 
 /**

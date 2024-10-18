@@ -1,3 +1,6 @@
+const {
+  createCheckSchema,
+} = require("express-validator/lib/middlewares/schema");
 const db = require("../db/queries");
 
 module.exports = {
@@ -18,6 +21,10 @@ module.exports = {
     const category = await db.getCategoryById(req.params["categoryId"]);
     res.render("editCategory", { category });
   },
+  getCreateCategoryForm: async function (req, res) {
+    console.log("Getting create category form");
+    res.render("createCategory");
+  },
   // WRITE METHODS
   editCategory: async function (req, res) {
     try {
@@ -26,6 +33,14 @@ module.exports = {
       console.log(req.body);
       await db.editCategory(req.body);
       console.log(`${req.body.name} Successfully changed`);
+      res.end();
+    } catch (error) {}
+  },
+  createCategory: async function (req, res) {
+    try {
+      console.log("creating new category");
+      const categoryDetails = req.body;
+      await db.createCategory(categoryDetails);
       res.end();
     } catch (error) {}
   },
